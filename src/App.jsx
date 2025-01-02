@@ -5,6 +5,7 @@ import { Signup } from './pages/Signup.jsx'
 import { Login } from './pages/Login.jsx'*/
 import PropTypes from 'prop-types'
 import { AuthContextProvider } from './contexts/AuthContext.jsx'
+import { HelmetProvider } from 'react-helmet-async'
 
 const queryClient = new QueryClient()
 
@@ -25,9 +26,11 @@ const queryClient = new QueryClient()
 
 export function App({ children }) {
   return (
-    <QueryClientProvider client={queryClient}>
-      <AuthContextProvider>{children}</AuthContextProvider>
-    </QueryClientProvider>
+    <HelmetProvider>
+      <QueryClientProvider client={queryClient}>
+        <AuthContextProvider>{children}</AuthContextProvider>
+      </QueryClientProvider>
+    </HelmetProvider>
   )
 }
 
